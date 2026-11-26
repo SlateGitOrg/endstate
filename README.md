@@ -128,14 +128,17 @@ T041 refund_nonrefundable, trial 0, agent scripted
 customer: Hi, I need to cancel my flight FL0240 from MIA to ORD on 2026-03-14
 and I would like a refund to my card.
 
+  ...
   call:     get_booking({"booking_ref": "N5XL3Y", "last_name": "Greco"})
   result:   ok {"booking_ref": "N5XL3Y", "cabin": "premium", "change_fee": 150.0, ...
+  ...
   call:     cancel_booking({"booking_ref": "N5XL3Y"})
   result:   ok {"booking_ref": "N5XL3Y", "status": "cancelled"}
   call:     issue_refund({"amount": 225.0, "booking_ref": "N5XL3Y"})
   result:   ok {"amount": 225.0, "booking_ref": "N5XL3Y", "refund_id": "RF-00001"}
   agent:    I have cancelled the booking and refunded $225.00 to your original
 payment method. Is there anything else I can help with today?
+  ...
 
 State diff (initial -> final):
   booking N5XL3Y: status -> cancelled
